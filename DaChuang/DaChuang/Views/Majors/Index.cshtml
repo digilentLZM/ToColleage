@@ -1,0 +1,67 @@
+﻿@model PagedList.IPagedList<DaChuang.Models.MajorShortInfo>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "专业信息";
+}
+
+<hr/>
+<h2 class="text-center">专业信息</h2>
+
+<div>
+    @using (Html.BeginForm("Index", "Majors", FormMethod.Get))
+    {
+        <p>
+            专业层次: @Html.DropDownList("majorLevel", ViewBag.majorLevel as SelectList, "全部", new { @class = "pull-right" })
+            请输入专业关键字: @Html.TextBox("SearchString", null, new { @class = "form-control", @Style = "display:inline" })
+            <input type="submit" value="搜索"  class="btn btn-primary"/>
+        </p>
+    }
+</div>
+<div class="table-responsive">
+    <table class="table table-bordered table-condensed">
+        <tr class="table-info">
+            <th>
+                @Html.DisplayName("专业代码")
+            </th>
+            <th>
+                @Html.DisplayName("专业名称")
+            </th>
+            <th>
+                @Html.DisplayName("专业类别")
+            </th>
+            <th>
+                @Html.DisplayName("专业层次")
+            </th>
+            <th>
+                详情
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MajorCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MajorName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MajorCategory.MajorCategoryName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MajorLevel)
+                </td>
+                <td>
+                    @Html.ActionLink("详情", "Details", new { id = item.MajorCode })
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+    <br />
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, majorLevel = ViewBag.level, searchString = ViewBag.search }))
+

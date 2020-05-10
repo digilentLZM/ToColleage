@@ -1,0 +1,198 @@
+﻿@model DaChuang.Models.Colleage
+
+@{
+    ViewBag.Title = "Details";
+    var ColleageIntro = Model.ColleageIntro;
+}
+
+<hr/>
+<h2 class="text-center">@Html.DisplayFor(model => model.ColleageName)</h2>
+
+<div class="row">
+    <div class="col-lg-4">
+        <div class="card text-white bg-info mb-3" style="max-width: 20rem;">
+            <div class="card-body">
+                <h4 class="card-title">学校基本信息</h4>
+                <p class="card-text">
+                    <dl class="dl-horizontal">
+                        <dt>@Html.DisplayNameFor(model => model.ColleageName)</dt>
+                        <dd>@Html.DisplayFor(model => model.ColleageName)</dd> 
+                        <dt>@Html.DisplayNameFor(model => model.ShortName)</dt>
+                        <dd>@Html.DisplayFor(model => model.ShortName)</dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.ColleageLevel)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.ColleageLevel)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.ColleageKind)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.ColleageKind)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.ColleageType)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.ColleageType)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.CreateDate)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.CreateDate)
+                        </dd>
+                    </dl>
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-lg-4">
+        <div class="card text-white bg-info mb-3" style="max-width: 20rem;">
+            <div class="card-body">
+                <h4 class="card-title">学校所在地和官网</h4>
+                <p class="card-text">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Belonging)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.City.CityName)
+                        </dd>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Belonging)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Address)
+                        </dt>
+
+                        <dd>
+                            
+                                @Html.DisplayFor(model => model.Address)
+                           
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.ColleageUrl)
+                        </dt>
+
+                        <dd>
+                            <a href="@Html.DisplayFor(model => model.ColleageUrl)">@Html.DisplayFor(model => model.ColleageUrl)</a>
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.ColleageArea)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.ColleageArea)
+                            亩
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Phone)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Phone)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.FamousAlumni)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.FamousAlumni)
+                        </dd>
+                    </dl>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+            <div class="card-body">
+                <h4 class="card-title">师资力量和就业前景</h4>
+                <p class="card-text">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.MasterCount)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.MasterCount)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.DoctorCount)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.DoctorCount)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.AcademicianCount)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.AcademicianCount)
+                        </dd>
+
+
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.PostgraduateRate)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.PostgraduateRate)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.JobRate)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.JobRate)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.LabCount)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.LabCount)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.ImportantSubject)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.ImportantSubject)
+                        </dd>
+                    </dl>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <p class="text-center">@Html.DisplayNameFor(model => model.ColleageIntro)</p>
+    <p>@Html.Raw(ColleageIntro)</p>
+</div>
+<p>
+    @Html.ActionLink("返回", "Index")
+</p>

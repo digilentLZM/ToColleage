@@ -1,0 +1,107 @@
+﻿@model DaChuang.Models.Major
+
+@{
+    ViewBag.Title = "Details";
+    var MajorIntro = Model.MajorIntro;
+    var JobOrientation = Model.JobOrientation;
+    var EducationObject = Model.EducationObject;
+}
+
+<hr />
+<h2 class="text-center"> @Html.DisplayFor(model => model.MajorName)</h2>
+
+<div>
+    
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MajorCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MajorCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MajorLevel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MajorLevel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MajorCategory.MajorCategoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MajorCategory.MajorCategoryName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PostGraduateRate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PostGraduateRate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JobRate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JobRate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MajorIntro)
+        </dt>
+
+        <dd>
+            @Html.Raw(MajorIntro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JobOrientation)
+        </dt>
+
+        <dd>
+            @Html.Raw(JobOrientation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EducationObject)
+        </dt>
+
+        <dd>
+            @Html.Raw(EducationObject)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MainCourses)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MainCourses)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StudyYear)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StudyYear)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Degree)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Degree)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("返回", "Index")
+</p>
