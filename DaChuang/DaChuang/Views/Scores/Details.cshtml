@@ -1,0 +1,90 @@
+﻿@model DaChuang.Models.Score
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Score</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Batch.BatchName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Batch.BatchName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Colleage.CityId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Colleage.CityId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Province.ProvinceName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Province.ProvinceName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StudentType.StudentTypeDetail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StudentType.StudentTypeDetail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Average)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Average)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MinScore)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MinScore)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BatchScore)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BatchScore)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AverageRank)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AverageRank)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MinRank)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MinRank)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,97 @@
+﻿@model PagedList.IPagedList<DaChuang.Models.ProvinceScoreLine>
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@using PagedList.Mvc
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<hr/>
+<h2 class="text-center">各省分数线</h2>
+
+<p>
+    @using (Html.BeginForm("Index", "ProvinceScoreLines", FormMethod.Get))
+    {
+    <div class="form-inline">
+        <div class="form-group col-md-2">
+
+            @Html.Label("所属地区")
+            @Html.DropDownList("provinceid", ViewBag.provinceid as SelectList, "全部", new { @class = "form-control" })
+
+        </div>
+
+
+        <div class="form-group col-md-3">
+
+            @Html.Label("考生类别")
+            @Html.DropDownList("studenttypeid",ViewBag.studenttypeid as SelectList, "全部", new { @class = "form-control" })
+
+        </div>
+
+        <div class="form-group col-md-3">
+            @Html.Label("录取批次")
+            @Html.DropDownList("batchid", ViewBag.batchid as SelectList, "全部", new { @class = "form-control" })
+        </div>
+
+        <div class="form-group col-md-2">
+
+            @Html.Label("录取年份")
+            @Html.DropDownList("select_year",ViewBag.select_year as SelectList,  "全部", new { @class = "form-control" })
+
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-1 col-md-2">
+                <input type="submit" value="筛选" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+    }
+</p>
+<div class="table-responsive">
+    <table class="table table-bordered table-condensed">
+        <tr class="table-primary">
+            <th>
+                @Html.DisplayName("地区")
+            </th>
+            <th>
+                @Html.DisplayName("年份")
+            </th>
+            <th>
+                @Html.DisplayName("考生类别")
+            </th>
+            <th>
+                @Html.DisplayName("批次")
+            </th>
+            <th>
+                @Html.DisplayName("分数线")
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Province.ProvinceName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Year)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StudentType.StudentTypeDetail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Batch.BatchName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BatchScore)
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+    <br />
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount，
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, studenttypeid = ViewBag.StudentType, provinceid = ViewBag.Province, batchid = ViewBag.Batch, select_year = ViewBag.Year }))

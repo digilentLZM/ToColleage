@@ -1,0 +1,42 @@
+﻿@model DaChuang.Models.ColleageScoreLine
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ColleageScoreLine</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MinScore)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MinScore)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Average)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Average)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BatchScore)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BatchScore)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

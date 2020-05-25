@@ -1,0 +1,118 @@
+﻿@model PagedList.IPagedList<DaChuang.Models.ColleageShortInfo>
+@using PagedList.Mvc
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "大学信息";
+}
+<hr />
+<h2 class="text-center">大学信息</h2>
+
+<p>
+    @using (Html.BeginForm("Index", "Colleages", FormMethod.Get))
+    {
+   
+        <div class="form-inline">
+            <div class="form-group col-md-2">
+
+                @Html.Label("所在地")
+                @Html.DropDownList("provinceid", ViewBag.provinceid as SelectList,"全部", new { @class = "form-control" })
+
+            </div>
+
+            <div class="form-group  col-md-2">
+
+                @Html.Label("院校特色")
+                @Html.DropDownList("colleagelevel", ViewBag.colleagelevel as SelectList, "全部", new { @class = "form-control" })
+            </div>
+
+            <div class="form-group  col-md-2">
+
+                @Html.Label("院校类型")
+                @Html.DropDownList("colleagetype", ViewBag.colleagetype as SelectList,  "全部", new { @class = "form-control" })
+
+            </div>
+
+            <div class="form-group  col-md-2">
+
+                @Html.Label("办学类型") @Html.DropDownList("colleagekind", ViewBag.colleagekind as SelectList, "全部", new { @class = "form-control" })
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-md-offset-4 col-md-2">
+                    <input type="submit" value="筛选" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+    }
+</p>
+
+<div class="table-responsive">
+    <table class="table table-codensed table-bordered">
+        <tr class="table-primary">
+            <th>
+                @Html.DisplayName("大学名称")
+            </th>
+
+            <th>
+                @Html.DisplayName("所在地")
+            </th>
+
+            <th>
+                @Html.DisplayName("大学类型")
+            </th>
+
+            <th>
+                @Html.DisplayName("大学水平")
+            </th>
+
+            <th>
+                @Html.DisplayName("学校隶属")
+            </th>
+
+            <th>
+                @Html.DisplayName("办学类型")
+            </th>
+            <th>
+                详情
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr class="table-secondary">
+                <td>
+                    @Html.DisplayFor(modelItem => item.ColleageName)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.City.CityName)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ColleageType)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ColleageLevel)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Belonging)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ColleageKind)
+                </td>
+
+                <td>
+                    @Html.ActionLink("详情", "Details", new { id = item.ColleageCode })
+                </td>
+            </tr>
+        }
+    </table>
+ </div>
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, provinceid = ViewBag.province, colleagelevel = ViewBag.level, colleagekind = ViewBag.kind, colleagetype = ViewBag.type }))
