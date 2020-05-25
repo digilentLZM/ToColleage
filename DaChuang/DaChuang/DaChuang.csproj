@@ -422,6 +422,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="delete\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
