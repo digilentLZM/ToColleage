@@ -8,7 +8,6 @@ namespace DaChuang.DAL
         public DaChuangContext()
             : base("name=DaChuang")
         {
-
         }
 
         public virtual DbSet<Batch> Batch { get; set; }
@@ -41,9 +40,7 @@ namespace DaChuang.DAL
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-             
-        
-        modelBuilder.Entity<Batch>()
+            modelBuilder.Entity<Batch>()
                 .Property(e => e.BatchName)
                 .IsUnicode(false);
 
