@@ -14,7 +14,7 @@ namespace DaChuang.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public StudentType()
         {
-            Score = new HashSet<Score>();
+            Score = new HashSet<ColleageMajorLine>();
         }
 
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
@@ -25,6 +25,6 @@ namespace DaChuang.Models
         public string StudentTypeDetail { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Score> Score { get; set; }
+        public virtual ICollection<ColleageMajorLine> Score { get; set; }
     }
 }

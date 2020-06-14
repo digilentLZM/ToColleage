@@ -11,7 +11,7 @@ using PagedList;
 
 namespace DaChuang.Controllers
 {
-    public class ScoresController : Controller
+    public class ColleageMajorLinesController : Controller
     {
         private DaChuangContext db = new DaChuangContext();
 
@@ -19,7 +19,7 @@ namespace DaChuang.Controllers
         //分页， 分数查询, 筛选条件是 学校所在地 学生类别 省份 批次 年份
         public ActionResult Index(int? page, string colleagename, string location, int? studenttypeid, string provinceid, int? batchid, int? select_year)
         {
-            var scores = (from score in db.Score
+            var scores = (from score in db.ColleageMajorLine
                           join colleage in db.Colleage on score.ColleageCode equals colleage.ColleageCode
                           join batch in db.Batch on score.BatchId equals batch.BatchId
                           join stutype in db.StudentType on score.StudentTypeId equals stutype.StudentTypeId
@@ -32,6 +32,7 @@ namespace DaChuang.Controllers
             ViewBag.batchid = new SelectList(db.Batch, "BatchId", "BatchName");
             var yearlist = new List<int>
             {
+                2019,
                 2018,
                 2017,
                 2016,
@@ -93,7 +94,7 @@ namespace DaChuang.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Score score = db.Score.Find(id);
+            ColleageMajorLine score = db.ColleageMajorLine.Find(id);
             if (score == null)
             {
                 return HttpNotFound();
@@ -116,11 +117,11 @@ namespace DaChuang.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ColleageCode,MajorInfo,BatchId,ProvinceId,StudentTypeId,Year,Average,MinScore,BatchScore,AverageRank,MinRank")] Score score)
+        public ActionResult Create([Bind(Include = "ColleageCode,MajorCode,BatchId,ProvinceId,StudentTypeId,Year,Average,MinScore,BatchScore,AverageRank,MinRank")] ColleageMajorLine score)
         {
             if (ModelState.IsValid)
             {
-                db.Score.Add(score);
+                db.ColleageMajorLine.Add(score);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -139,7 +140,7 @@ namespace DaChuang.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Score score = db.Score.Find(id);
+            ColleageMajorLine score = db.ColleageMajorLine.Find(id);
             if (score == null)
             {
                 return HttpNotFound();
@@ -156,7 +157,7 @@ namespace DaChuang.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ColleageCode,MajorInfo,BatchId,ProvinceId,StudentTypeId,Year,Average,MinScore,BatchScore,AverageRank,MinRank")] Score score)
+        public ActionResult Edit([Bind(Include = "ColleageCode,MajorCode,BatchId,ProvinceId,StudentTypeId,Year,Average,MinScore,BatchScore,AverageRank,MinRank")] ColleageMajorLine score)
         {
             if (ModelState.IsValid)
             {
@@ -178,7 +179,7 @@ namespace DaChuang.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Score score = db.Score.Find(id);
+            ColleageMajorLine score = db.ColleageMajorLine.Find(id);
             if (score == null)
             {
                 return HttpNotFound();
@@ -191,8 +192,8 @@ namespace DaChuang.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            Score score = db.Score.Find(id);
-            db.Score.Remove(score);
+            ColleageMajorLine score = db.ColleageMajorLine.Find(id);
+            db.ColleageMajorLine.Remove(score);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -1,15 +1,11 @@
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.Entity.Spatial;
 
 namespace DaChuang.Models
 {
-   
 
-    [Table("SpecialMajor")]
-    public partial class SpecialMajor
+    [Table("ColleageMajor")]
+    public partial class ColleageMajor
     {
         [Key]
         [Column(Order = 0)]
@@ -21,10 +17,9 @@ namespace DaChuang.Models
         [StringLength(12)]
         public string MajorCode { get; set; }
 
-        public string Detail { get; set; }
-
-        public virtual Colleage Colleage { get; set; }
-
         public virtual Major Major { get; set; }
+
+        public virtual Colleage Colleage{ get;  set;}
+        //public virtual Colleage Colleage { get; set; }
     }
 }

@@ -34,7 +34,5 @@ namespace DaChuang.Models
         public int Count { get; set; }
 
         public virtual Province Province { get; set; }
-
-        public virtual SubjectChoose SubjectChoose { get; set; }
     }
 }

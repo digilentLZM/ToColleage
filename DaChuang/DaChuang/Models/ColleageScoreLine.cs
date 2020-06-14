@@ -35,9 +35,10 @@ namespace DaChuang.Models
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int BatchId { get; set; }
 
+        public double? MaxScore { get; set; }
         public double? MinScore { get; set; }
 
-        public double? Average { get; set; }
+        public decimal? Average { get; set; }
 
         public double? BatchScore { get; set; }
         public virtual Colleage Colleage { get; set; }

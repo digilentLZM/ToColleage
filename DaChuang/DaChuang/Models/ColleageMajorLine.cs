@@ -6,10 +6,9 @@ using System.Data.Entity.Spatial;
 
 namespace DaChuang.Models
 {
-    
-
-    [Table("Score")]
-    public partial class Score
+   
+    [Table("ColleageMajorLine")]
+    public partial class ColleageMajorLine
     {
         [Key]
         [Column(Order = 0)]
@@ -18,8 +17,8 @@ namespace DaChuang.Models
 
         [Key]
         [Column(Order = 1)]
-        [StringLength(600)]
-        public string MajorInfo { get; set; }
+        [StringLength(12)]
+        public string MajorCode { get; set; }
 
         [Key]
         [Column(Order = 2)]
@@ -40,12 +39,15 @@ namespace DaChuang.Models
         [Column(Order = 5)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Year { get; set; }
-
-        public double? Average { get; set; }
+        public double? MaxScore { get; set; }
+        public decimal ?Average { get; set; }
 
         public double? MinScore { get; set; }
 
         public double? BatchScore { get; set; }
+
+        public int? MaxUpRank { get; set; }
+        public int? MaxDownRank { get; set; }
 
         public int? AverageUpRank { get; set; }
 
@@ -62,5 +64,7 @@ namespace DaChuang.Models
         public virtual Province Province { get; set; }
 
         public virtual StudentType StudentType { get; set; }
+
+        public virtual Major Major { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿@model PagedList.IPagedList<DaChuang.Models.Score>
+﻿@model PagedList.IPagedList<DaChuang.Models.ColleageMajorLine>
 @using PagedList.Mvc
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
@@ -10,7 +10,7 @@
 <h2 class="text-center">专业分数线</h2>
 
 <p>
-    @using (Html.BeginForm("Index", "Scores", FormMethod.Get))
+    @using (Html.BeginForm("Index", "ColleageMajorLines", FormMethod.Get))
     {
         
         <div class="text-center">
@@ -91,7 +91,9 @@
             <th>
                 @Html.DisplayName("年份")
             </th>
-
+            <th>
+                @Html.DisplayName("最高分")
+            </th>
             <th>
                 @Html.DisplayName("平均分")
             </th>
@@ -103,7 +105,9 @@
             <th>
                 @Html.DisplayName("批次线")
             </th>
-
+            <th>
+                @Html.DisplayName("最高分对应排名段")
+            </th>
             <th>
                 @Html.DisplayName("平均分对应排名段")
             </th>
@@ -116,51 +120,55 @@
 
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Colleage.ColleageName)
-                </td>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Colleage.ColleageName)
+            </td>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.MajorInfo)
-                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Major.MajorCode)
+            </td>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.Batch.BatchName)
-                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Batch.BatchName)
+            </td>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.Province.ProvinceName)
-                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Province.ProvinceName)
+            </td>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.StudentType.StudentTypeDetail)
-                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StudentType.StudentTypeDetail)
+            </td>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.Year)
-                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Year)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaxScore)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Average)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MinScore)
+            </td>
+            <td>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.Average)
-                </td>
-                <td>
-                     @Html.DisplayFor(modelItem => item.MinScore)
-                </td>
-                <td>
-                   
-                    @Html.DisplayFor(modelItem => item.BatchScore)
-                    
-                </td>
+                @Html.DisplayFor(modelItem => item.BatchScore)
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.AverageUpRank) ~ @Html.DisplayFor(modelItem => item.AverageDownRank)
-                </td>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaxUpRank) ~ @Html.DisplayFor(modelItem => item.MaxDownRank)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AverageUpRank) ~ @Html.DisplayFor(modelItem => item.AverageDownRank)
+            </td>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.MinUpRank) ~ @Html.DisplayFor(modelItem => item.MinDownRank)
-                </td>
-            </tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MinUpRank) ~ @Html.DisplayFor(modelItem => item.MinDownRank)
+            </td>
+        </tr>
         }
     </table>
 </div>

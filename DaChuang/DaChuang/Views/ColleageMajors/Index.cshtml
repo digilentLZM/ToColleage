@@ -1,0 +1,66 @@
+﻿@model PagedList.IPagedList<DaChuang.Models.ColleageMajor>
+@using PagedList.Mvc
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "大学专业信息";
+}
+<hr />
+<h2 class="text-center">大学专业信息</h2>
+
+@using (Html.BeginForm("Index", "ColleageMajors", FormMethod.Get))
+{
+
+<p>
+    专业关键字 @Html.TextBox("majorname", null, new { @class = "form-control", @Style = "display:inline" })
+    学校名 @Html.TextBox("colleagename", null, new { @class = "form-control", @Style = "display:inline" })
+    专业代码  @Html.TextBox("majorcode", null, new { @class = "form-control", @Style = "display:inline" })
+    <input type="submit" value="搜索" class="btn btn-primary" />
+</p>
+
+}
+
+<div class="table-responsive">
+    <table class="table table-codensed table-bordered">
+        <tr class="table-primary">
+            <th>
+                @Html.DisplayName("大学名称")
+            </th>
+
+            <th>
+                @Html.DisplayName("专业名称")
+            </th>
+
+            <th>
+                @Html.DisplayName("专业代码")
+            </th>
+            <th>
+                专业介绍
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr class="table-secondary">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Colleage.ColleageName)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Major.MajorName)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.MajorCode)
+                </td>
+                <td>
+                    @Html.ActionLink("详情", "Details", "Majors", new { id = item.Major.MajorCode }, null)
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, majorname = ViewBag.MajorName, colleagename = ViewBag.ColleageName, majorcode = ViewBag.MajorCode}))
