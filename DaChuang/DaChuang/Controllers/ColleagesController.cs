@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using DaChuang.DAL;
 using DaChuang.Models;
@@ -19,7 +20,7 @@ namespace DaChuang.Controllers
         //加入筛选功能 页数 所在地 学校水平 学校类型 办学类型
         public ActionResult Index(int? page, string provinceid, string colleagelevel, string colleagetype, string colleagekind)
         {
-            var colleage =   db.ColleageShortInfo.AsNoTracking().Include(c => c.City.Province); //预先加载
+            var colleage = db.ColleageShortInfo.AsNoTracking().Include(c => c.City.Province); //预先加载
 
             //先筛选后分页
             var levelList = new List<string>();
@@ -72,18 +73,19 @@ namespace DaChuang.Controllers
             int pageNumber = (page ?? 1);//if page == null then page = 1 else page
             colleage = colleage.OrderBy(s => s.ColleageName);
 
-            return View(colleage.ToPagedList(pageNumber, pageSize));
+            IPagedList<ColleageShortInfo> colleages = colleage.ToPagedList(pageNumber, pageSize);
+            return View(colleages);
         }
 
         // GET: Colleages/Details/5
         //学校详情
-        public ActionResult Details(string id)
+        public async Task<ActionResult> Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Colleage colleage = db.Colleage.Find(id);
+            Colleage colleage = await db.Colleage.FindAsync(id);
             if (colleage == null)
             {
                 return HttpNotFound();
@@ -102,14 +104,14 @@ namespace DaChuang.Controllers
         // POST: Colleages/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ColleageCode,CityId,ColleageName,ShortName,ColleageUrl,ColleageLevel,ColleageType,MasterCount,DoctorCount,Address,PostgraduateRate,JobRate,FamousAlumni,Belonging,ColleageKind,ColleageId,ColleageIntro,CreateDate,ColleageArea,Phone,LabCount,ImportantSubject,StudentCount,ColleagezsUrl,AcademicianCount")] Colleage colleage)
+        public async Task<ActionResult> Create([Bind(Include = "ColleageCode,CityId,ColleageName,ShortName,ColleageUrl,ColleageLevel,ColleageType,MasterCount,DoctorCount,Address,PostgraduateRate,JobRate,FamousAlumni,Belonging,ColleageKind,ColleageId,ColleageIntro,CreateDate,ColleageArea,Phone,LabCount,ImportantSubject,StudentCount,ColleagezsUrl,AcademicianCount")] Colleage colleage)
         {
             if (ModelState.IsValid)
             {
                 db.Colleage.Add(colleage);
-                db.SaveChanges();
+                await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
@@ -136,7 +138,6 @@ namespace DaChuang.Controllers
         // POST: Colleages/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ColleageCode,CityId,ColleageName,ShortName,ColleageUrl,ColleageLevel,ColleageType,MasterCount,DoctorCount,Address,PostgraduateRate,JobRate,FamousAlumni,Belonging,ColleageKind,ColleageId,ColleageIntro,CreateDate,ColleageArea,Phone,LabCount,ImportantSubject,StudentCount,ColleagezsUrl,AcademicianCount")] Colleage colleage)
         {
@@ -166,7 +167,6 @@ namespace DaChuang.Controllers
         }
 
         // POST: Colleages/Delete/5
-        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {

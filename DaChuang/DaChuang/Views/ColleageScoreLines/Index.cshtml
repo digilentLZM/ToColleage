@@ -71,11 +71,14 @@
                 @Html.DisplayName("录取批次")
             </th>
             <th>
-                @Html.DisplayName("平均分")
+                @Html.DisplayName("最高分")
             </th>
             <th>
-                @Html.DisplayName("最低分")
+                @Html.DisplayName("平均分")
             </th>
+            @*<th>
+                @Html.DisplayName("最低分")
+            </th>*@
             <th>
                 @Html.DisplayName("批次线")
             </th>
@@ -83,35 +86,37 @@
 
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Colleage.ColleageName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Province.ProvinceName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.StudentType.StudentTypeDetail)
-                </td>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Colleage.ColleageName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Province.ProvinceName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StudentType.StudentTypeDetail)
+            </td>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.Year)
-                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Year)
+            </td>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.Batch.BatchName)
-                </td>
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.MinScore)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Average)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.BatchScore)
-                </td>
-            </tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Batch.BatchName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaxScore)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Average)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.MinScore)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.BatchScore)
+            </td>
+        </tr>
         }
 
     </table>

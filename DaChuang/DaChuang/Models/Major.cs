@@ -9,16 +9,6 @@ namespace DaChuang.Models
     [Table("Major")]
     public partial class Major
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Major()
-        {
-            EnrollmentPlan = new HashSet<EnrollmentPlan>();
-            FamousTeacher = new HashSet<FamousTeacher>();
-            FinalAcceptance = new HashSet<FinalAcceptance>();
-            MiddleSchoolMatriculateHistory = new HashSet<MiddleSchoolMatriculateHistory>();
-            SpecialMajor = new HashSet<SpecialMajor>();
-        }
-
         [Key]
         [StringLength(12)]
         [Display(Name = "专业代码")]
@@ -62,21 +52,6 @@ namespace DaChuang.Models
         [Display(Name = "专业名称")]
         public string MajorName { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EnrollmentPlan> EnrollmentPlan { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<FamousTeacher> FamousTeacher { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<FinalAcceptance> FinalAcceptance { get; set; }
-
         public virtual MajorCategory MajorCategory { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MiddleSchoolMatriculateHistory> MiddleSchoolMatriculateHistory { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SpecialMajor> SpecialMajor { get; set; }
     }
 }

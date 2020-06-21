@@ -1,7 +1,7 @@
-﻿@model PagedList.IPagedList<DaChuang.Models.ColleageShortInfo>
+﻿
+@model PagedList.IPagedList<DaChuang.Models.ColleageShortInfo>
 @using PagedList.Mvc
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
-
 @{
     ViewBag.Title = "大学信息";
 }
@@ -11,12 +11,12 @@
 <p>
     @using (Html.BeginForm("Index", "Colleages", FormMethod.Get))
     {
-   
+
         <div class="form-inline">
             <div class="form-group col-md-2">
 
                 @Html.Label("所在地")
-                @Html.DropDownList("provinceid", ViewBag.provinceid as SelectList,"全部", new { @class = "form-control" })
+                @Html.DropDownList("provinceid", ViewBag.provinceid as SelectList, "全部", new { @class = "form-control" })
 
             </div>
 
@@ -29,7 +29,7 @@
             <div class="form-group  col-md-2">
 
                 @Html.Label("院校类型")
-                @Html.DropDownList("colleagetype", ViewBag.colleagetype as SelectList,  "全部", new { @class = "form-control" })
+                @Html.DropDownList("colleagetype", ViewBag.colleagetype as SelectList, "全部", new { @class = "form-control" })
 
             </div>
 
@@ -47,6 +47,7 @@
         </div>
     }
 </p>
+
 
 <div class="table-responsive">
     <table class="table table-codensed table-bordered">
@@ -111,8 +112,10 @@
             </tr>
         }
     </table>
- </div>
+</div>
+
 <br />
 Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
 @Html.PagedListPager(Model, page => Url.Action("Index", new { page, provinceid = ViewBag.province, colleagelevel = ViewBag.level, colleagekind = ViewBag.kind, colleagetype = ViewBag.type }))
+

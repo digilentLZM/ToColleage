@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TESTModelStoreContainer" CdmEntityContainer="TESTEntities">
+    <EntitySetMapping Name="ScoreSegment">
+      <EntityTypeMapping TypeName="TESTModel.ScoreSegment">
+        <MappingFragment StoreEntitySet="ScoreSegment">
+          <ScalarProperty Name="ProvinceId" ColumnName="ProvinceId" />
+          <ScalarProperty Name="StudentTypeId" ColumnName="StudentTypeId" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="Score" ColumnName="Score" />
+          <ScalarProperty Name="SegmentCount" ColumnName="SegmentCount" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="CheckRank" FunctionName="TESTModel.Store.CheckRank">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TESTModel.CheckRank_Result">
+          <ScalarProperty Name="Column1" ColumnName="Column1" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CheckScoreRank" FunctionName="TESTModel.Store.CheckRank" />
+  </EntityContainerMapping>
+</Mapping>

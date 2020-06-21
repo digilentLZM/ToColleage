@@ -1,4 +1,5 @@
 using System.Data.Entity;
+using System.Diagnostics;
 using DaChuang.Models;
 
 namespace DaChuang.DAL
@@ -8,36 +9,25 @@ namespace DaChuang.DAL
         public DaChuangContext()
             : base("name=DaChuang")
         {
+            Database.Log = sql => Debug.Write(sql);
         }
 
         public virtual DbSet<Batch> Batch { get; set; }
-        public virtual DbSet<Choice> Choice { get; set; }
         public virtual DbSet<City> City { get; set; }
         public virtual DbSet<Colleage> Colleage { get; set; }
-        public virtual DbSet<EnrollmentPlan> EnrollmentPlan { get; set; }
-        public virtual DbSet<FamousTeacher> FamousTeacher { get; set; }
-        public virtual DbSet<FinalAcceptance> FinalAcceptance { get; set; }
-        public virtual DbSet<Grade> Grade { get; set; }
         public virtual DbSet<Major> Major { get; set; }
         public virtual DbSet<MajorCategory> MajorCategory { get; set; }
-        public virtual DbSet<MiddleSchool> MiddleSchool { get; set; }
-        public virtual DbSet<MiddleSchoolMatriculateHistory> MiddleSchoolMatriculateHistory { get; set; }
         public virtual DbSet<Province> Province { get; set; }
-        public virtual DbSet<Score> Score { get; set; }
+        public virtual DbSet<ColleageMajorLine> ColleageMajorLine { get; set; }
         public virtual DbSet<ScoreSegment> ScoreSegment { get; set; }
-        public virtual DbSet<SpecialMajor> SpecialMajor { get; set; }
-        public virtual DbSet<Student> Student { get; set; }
+       
         public virtual DbSet<StudentType> StudentType { get; set; }
-        public virtual DbSet<Subject> Subject { get; set; }
-        public virtual DbSet<SubjectChoose> SubjectChoose { get; set; }
-        public virtual DbSet<JiangXiAcceptance> JiangXiAcceptance { get; set; }
+       
         public virtual DbSet<ColleageScoreLine> ColleageScoreLine { get; set; }
         public virtual DbSet<ProvinceScoreLine> ProvinceScoreLine { get; set; }
-
         public virtual DbSet<ColleageShortInfo> ColleageShortInfo { get; set; }
-
         public virtual DbSet<MajorShortInfo> MajorShortInfo { get; set; }
-
+        public virtual DbSet<ColleageMajor> ColleageMajor { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Batch>()
@@ -45,43 +35,11 @@ namespace DaChuang.DAL
                 .IsUnicode(false);
 
             modelBuilder.Entity<Batch>()
-                .HasMany(e => e.EnrollmentPlan)
-                .WithRequired(e => e.Batch1)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Batch>()
                 .HasMany(e => e.Score)
                 .WithRequired(e => e.Batch)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Choice>()
-                .Property(e => e.ChoiceId)
-                .IsFixedLength();
-
-            modelBuilder.Entity<Choice>()
-                .Property(e => e.ChoiceDetail)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Choice>()
-                .HasMany(e => e.Grade)
-                .WithRequired(e => e.Choice)
-                .HasForeignKey(e => e.ChooseId1)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Choice>()
-                .HasMany(e => e.Grade1)
-                .WithOptional(e => e.Choice1)
-                .HasForeignKey(e => e.ChooseId2);
-
-            modelBuilder.Entity<Choice>()
-                .HasMany(e => e.Grade2)
-                .WithOptional(e => e.Choice2)
-                .HasForeignKey(e => e.ChooseId3);
-
-            modelBuilder.Entity<Choice>()
-                .HasMany(e => e.Grade3)
-                .WithOptional(e => e.Choice3)
-                .HasForeignKey(e => e.ChooseId3);
+           
 
             modelBuilder.Entity<City>()
                 .Property(e => e.CityId)
@@ -97,11 +55,6 @@ namespace DaChuang.DAL
 
             modelBuilder.Entity<City>()
                 .HasMany(e => e.Colleage)
-                .WithRequired(e => e.City)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<City>()
-                .HasMany(e => e.MiddleSchool)
                 .WithRequired(e => e.City)
                 .WillCascadeOnDelete(false);
 
@@ -173,33 +126,9 @@ namespace DaChuang.DAL
                 .Property(e => e.ColleagezsUrl)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Colleage>()
-                .HasMany(e => e.EnrollmentPlan)
-                .WithRequired(e => e.Colleage)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Colleage>()
-                .HasMany(e => e.FamousTeacher)
-                .WithRequired(e => e.Colleage)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Colleage>()
-                .HasMany(e => e.FinalAcceptance)
-                .WithRequired(e => e.Colleage)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Colleage>()
-                .HasMany(e => e.MiddleSchoolMatriculateHistory)
-                .WithRequired(e => e.Colleage)
-                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Colleage>()
                 .HasMany(e => e.Score)
-                .WithRequired(e => e.Colleage)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Colleage>()
-                .HasMany(e => e.SpecialMajor)
                 .WithRequired(e => e.Colleage)
                 .WillCascadeOnDelete(false);
 
@@ -231,87 +160,6 @@ namespace DaChuang.DAL
             modelBuilder.Entity<ColleageShortInfo>()
                 .Property(e => e.ColleageKind)
                 .IsUnicode(false);
-
-
-            modelBuilder.Entity<EnrollmentPlan>()
-                .Property(e => e.ColleageCode)
-                .IsFixedLength();
-
-            modelBuilder.Entity<EnrollmentPlan>()
-                .Property(e => e.ProvinceId)
-                .IsFixedLength();
-
-            modelBuilder.Entity<EnrollmentPlan>()
-                .Property(e => e.MajorCode)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<EnrollmentPlan>()
-                .Property(e => e.Batch)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<EnrollmentPlan>()
-                .Property(e => e.Limitations)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<FamousTeacher>()
-                .Property(e => e.ColleageCode)
-                .IsFixedLength();
-
-            modelBuilder.Entity<FamousTeacher>()
-                .Property(e => e.MajorCode)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<FamousTeacher>()
-                .Property(e => e.TeacherName)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<FamousTeacher>()
-                .Property(e => e.Sex)
-                .IsFixedLength();
-
-            modelBuilder.Entity<FamousTeacher>()
-                .Property(e => e.ProfessionTitle)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<FamousTeacher>()
-                .Property(e => e.Education)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<FamousTeacher>()
-                .Property(e => e.AcademicianType)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<FinalAcceptance>()
-                .Property(e => e.StudentId)
-                .IsFixedLength();
-
-            modelBuilder.Entity<FinalAcceptance>()
-                .Property(e => e.ColleageCode)
-                .IsFixedLength();
-
-            modelBuilder.Entity<FinalAcceptance>()
-                .Property(e => e.MajorCode)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Grade>()
-                .Property(e => e.ProvinceId)
-                .IsFixedLength();
-
-            modelBuilder.Entity<Grade>()
-                .Property(e => e.StudentId)
-                .IsFixedLength();
-
-            modelBuilder.Entity<Grade>()
-                .Property(e => e.ChooseId1)
-                .IsFixedLength();
-
-            modelBuilder.Entity<Grade>()
-                .Property(e => e.ChooseId2)
-                .IsFixedLength();
-
-            modelBuilder.Entity<Grade>()
-                .Property(e => e.ChooseId3)
-                .IsFixedLength();
 
             modelBuilder.Entity<Major>()
                 .Property(e => e.MajorCode)
@@ -354,30 +202,6 @@ namespace DaChuang.DAL
                 .Property(e => e.MajorName)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Major>()
-                .HasMany(e => e.EnrollmentPlan)
-                .WithRequired(e => e.Major)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Major>()
-                .HasMany(e => e.FamousTeacher)
-                .WithRequired(e => e.Major)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Major>()
-                .HasMany(e => e.FinalAcceptance)
-                .WithRequired(e => e.Major)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Major>()
-                .HasMany(e => e.MiddleSchoolMatriculateHistory)
-                .WithRequired(e => e.Major)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Major>()
-                .HasMany(e => e.SpecialMajor)
-                .WithRequired(e => e.Major)
-                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<MajorCategory>()
                 .Property(e => e.MajorCategoryName)
@@ -396,43 +220,6 @@ namespace DaChuang.DAL
                 .WithRequired(e => e.MajorCategory)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<MiddleSchool>()
-                .Property(e => e.MiddleSchoolCode)
-                .IsFixedLength();
-
-            modelBuilder.Entity<MiddleSchool>()
-                .Property(e => e.MiddleSchoolName)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<MiddleSchool>()
-                .Property(e => e.CityId)
-                .IsFixedLength();
-
-            modelBuilder.Entity<MiddleSchool>()
-                .Property(e => e.IsImportant)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<MiddleSchool>()
-                .HasMany(e => e.MiddleSchoolMatriculateHistory)
-                .WithRequired(e => e.MiddleSchool)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<MiddleSchoolMatriculateHistory>()
-                .Property(e => e.MiddleSchoolCode)
-                .IsFixedLength();
-
-            modelBuilder.Entity<MiddleSchoolMatriculateHistory>()
-                .Property(e => e.ColleageCode)
-                .IsFixedLength();
-
-            modelBuilder.Entity<MiddleSchoolMatriculateHistory>()
-                .Property(e => e.MajorCode)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<MiddleSchoolMatriculateHistory>()
-                .Property(e => e.StudentName)
-                .IsUnicode(false);
-
             modelBuilder.Entity<Province>()
                 .Property(e => e.ProvinceId)
                 .IsFixedLength();
@@ -446,74 +233,21 @@ namespace DaChuang.DAL
                 .WithRequired(e => e.Province)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Province>()
-                .HasMany(e => e.EnrollmentPlan)
-                .WithRequired(e => e.Province)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Province>()
-                .HasMany(e => e.Grade)
-                .WithRequired(e => e.Province)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Province>()
-                .HasMany(e => e.Score)
-                .WithRequired(e => e.Province)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Province>()
-                .HasMany(e => e.ScoreSegment)
-                .WithRequired(e => e.Province)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Score>()
+            modelBuilder.Entity<ColleageMajorLine>()
                 .Property(e => e.ColleageCode)
                 .IsFixedLength();
 
-            modelBuilder.Entity<Score>()
-                .Property(e => e.MajorInfo)
+            modelBuilder.Entity<ColleageMajorLine>()
+                .Property(e => e.MajorCode)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Score>()
+            modelBuilder.Entity<ColleageMajorLine>()
                 .Property(e => e.ProvinceId)
                 .IsFixedLength();
 
             modelBuilder.Entity<ScoreSegment>()
                 .Property(e => e.ProvinceId)
                 .IsFixedLength();
-
-            modelBuilder.Entity<SpecialMajor>()
-                .Property(e => e.ColleageCode)
-                .IsFixedLength();
-
-            modelBuilder.Entity<SpecialMajor>()
-                .Property(e => e.MajorCode)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<SpecialMajor>()
-                .Property(e => e.Detail)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Student>()
-                .Property(e => e.StudentId)
-                .IsFixedLength();
-
-            modelBuilder.Entity<Student>()
-                .Property(e => e.MiddleSchoolCode)
-                .IsFixedLength();
-
-            modelBuilder.Entity<Student>()
-                .Property(e => e.StudentName)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Student>()
-                .HasOptional(e => e.FinalAcceptance)
-                .WithRequired(e => e.Student);
-
-            modelBuilder.Entity<Student>()
-                .HasMany(e => e.Grade)
-                .WithRequired(e => e.Student)
-                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<StudentType>()
                 .Property(e => e.StudentTypeDetail)
@@ -524,50 +258,6 @@ namespace DaChuang.DAL
                 .WithRequired(e => e.StudentType)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Subject>()
-                .Property(e => e.SubjectCode)
-                .IsFixedLength();
-
-            modelBuilder.Entity<Subject>()
-                .Property(e => e.SubjectName)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Subject>()
-                .HasMany(e => e.MajorCategory)
-                .WithRequired(e => e.Subject)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<SubjectChoose>()
-                .Property(e => e.SubjectDetail)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<SubjectChoose>()
-                .HasMany(e => e.Grade)
-                .WithRequired(e => e.SubjectChoose)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<SubjectChoose>()
-                .HasMany(e => e.ScoreSegment)
-                .WithRequired(e => e.SubjectChoose)
-                .HasForeignKey(e => e.StudentTypeId)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<JiangXiAcceptance>()
-                .Property(e => e.ColleageCode)
-                .IsFixedLength();
-
-            modelBuilder.Entity<JiangXiAcceptance>()
-                .Property(e => e.ColleageName)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<JiangXiAcceptance>()
-                .Property(e => e.Subject)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<JiangXiAcceptance>()
-                .Property(e => e.Batch)
-                .IsUnicode(false);
-
             modelBuilder.Entity<ColleageScoreLine>()
                 .Property(e => e.ColleageCode)
                 .IsFixedLength();
@@ -575,10 +265,15 @@ namespace DaChuang.DAL
             modelBuilder.Entity<ColleageScoreLine>()
                 .Property(e => e.ProvinceId)
                 .IsFixedLength();
+
+            //modelBuilder.Entity<ColleageScoreLine>()
+            //   .Property(e => e.Average)
+            //   .HasColumnType("decimal(5,2)");
 
             modelBuilder.Entity<ProvinceScoreLine>()
                 .Property(e => e.ProvinceId)
                 .IsFixedLength();
+
 
 
             modelBuilder.Entity<MajorShortInfo>()
@@ -597,5 +292,7 @@ namespace DaChuang.DAL
                 .Property(e => e.MajorLevel)
                 .IsUnicode(false);
         }
+
+        public System.Data.Entity.DbSet<DaChuang.Models.Subject> Subjects { get; set; }
     }
 }

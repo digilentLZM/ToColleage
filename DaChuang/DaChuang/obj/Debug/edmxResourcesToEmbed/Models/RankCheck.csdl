@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TESTModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ScoreSegment">
+    <Key>
+      <PropertyRef Name="ProvinceId" />
+      <PropertyRef Name="StudentTypeId" />
+      <PropertyRef Name="Year" />
+      <PropertyRef Name="Score" />
+    </Key>
+    <Property Name="ProvinceId" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="StudentTypeId" Type="Int32" Nullable="false" />
+    <Property Name="Year" Type="Int32" Nullable="false" />
+    <Property Name="Score" Type="Double" Nullable="false" />
+    <Property Name="SegmentCount" Type="Int32" Nullable="false" />
+    <Property Name="Count" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="TESTEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ScoreSegment" EntityType="Self.ScoreSegment" />
+    <FunctionImport Name="CheckRank" ReturnType="Collection(TESTModel.CheckRank_Result)">
+      <Parameter Name="ProvinceId" Mode="In" Type="String" />
+      <Parameter Name="StudentTypeId" Mode="In" Type="Int32" />
+      <Parameter Name="Year" Mode="In" Type="Int32" />
+      <Parameter Name="Score" Mode="In" Type="Double" />
+    </FunctionImport>
+    <FunctionImport Name="CheckScoreRank" EntitySet="ScoreSegment" ReturnType="Collection(TESTModel.ScoreSegment)">
+      <Parameter Name="ProvinceId" Mode="In" Type="String" />
+      <Parameter Name="StudentTypeId" Mode="In" Type="Int32" />
+      <Parameter Name="Year" Mode="In" Type="Int32" />
+      <Parameter Name="Score" Mode="In" Type="Double" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="CheckRank_Result">
+    <Property Type="Int32" Name="Column1" Nullable="true" />
+    <Property Type="Int32" Name="Count" Nullable="false" />
+  </ComplexType>
+</Schema>

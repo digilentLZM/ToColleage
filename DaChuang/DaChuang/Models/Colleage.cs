@@ -10,16 +10,6 @@ namespace DaChuang.Models
     [Table("Colleage")]
     public partial class Colleage
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Colleage()
-        {
-            EnrollmentPlan = new HashSet<EnrollmentPlan>();
-            FamousTeacher = new HashSet<FamousTeacher>();
-            FinalAcceptance = new HashSet<FinalAcceptance>();
-            MiddleSchoolMatriculateHistory = new HashSet<MiddleSchoolMatriculateHistory>();
-            Score = new HashSet<Score>();
-            SpecialMajor = new HashSet<SpecialMajor>();
-        }
 
         [Key]
         [StringLength(10)]
@@ -111,21 +101,8 @@ namespace DaChuang.Models
         public virtual City City { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EnrollmentPlan> EnrollmentPlan { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<FamousTeacher> FamousTeacher { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<FinalAcceptance> FinalAcceptance { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MiddleSchoolMatriculateHistory> MiddleSchoolMatriculateHistory { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Score> Score { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SpecialMajor> SpecialMajor { get; set; }
+        public virtual ICollection<ColleageMajorLine> Score { get; set; }
     }
 }

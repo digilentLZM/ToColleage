@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TESTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ScoreSegment">
+    <Key>
+      <PropertyRef Name="ProvinceId" />
+      <PropertyRef Name="StudentTypeId" />
+      <PropertyRef Name="Year" />
+      <PropertyRef Name="Score" />
+    </Key>
+    <Property Name="ProvinceId" Type="nchar" MaxLength="2" Nullable="false" />
+    <Property Name="StudentTypeId" Type="int" Nullable="false" />
+    <Property Name="Year" Type="int" Nullable="false" />
+    <Property Name="Score" Type="float" Nullable="false" />
+    <Property Name="SegmentCount" Type="int" Nullable="false" />
+    <Property Name="Count" Type="int" Nullable="false" />
+  </EntityType>
+  <Function Name="CheckRank" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ProvinceId" Type="nchar" Mode="In" />
+    <Parameter Name="StudentTypeId" Type="int" Mode="In" />
+    <Parameter Name="Year" Type="int" Mode="In" />
+    <Parameter Name="Score" Type="float" Mode="In" />
+  </Function>
+  <EntityContainer Name="TESTModelStoreContainer">
+    <EntitySet Name="ScoreSegment" EntityType="Self.ScoreSegment" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

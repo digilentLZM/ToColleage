@@ -1,8 +1,5 @@
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.Entity.Spatial;
 
 namespace DaChuang.Models
 {
@@ -35,6 +32,6 @@ namespace DaChuang.Models
 
         public virtual Province Province { get; set; }
 
-        public virtual SubjectChoose SubjectChoose { get; set; }
+        public virtual StudentType StudentType { get; set; }
     }
 }

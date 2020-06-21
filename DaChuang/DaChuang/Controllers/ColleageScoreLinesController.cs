@@ -102,7 +102,7 @@ namespace DaChuang.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ColleageCode,ProvinceId,StudentTypeId,Year,BatchId,MinScore,Average,BatchScore")] ColleageScoreLine colleageScoreLine)
+        public ActionResult Create([Bind(Include = "ColleageCode,ProvinceId,StudentTypeId,Year,BatchId,Average,BatchScore")] ColleageScoreLine colleageScoreLine)
         {
             if (ModelState.IsValid)
             {
@@ -134,7 +134,7 @@ namespace DaChuang.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ColleageCode,ProvinceId,StudentTypeId,Year,BatchId,MinScore,Average,BatchScore")] ColleageScoreLine colleageScoreLine)
+        public ActionResult Edit([Bind(Include = "ColleageCode,ProvinceId,StudentTypeId,Year,BatchId,Average,BatchScore")] ColleageScoreLine colleageScoreLine)
         {
             if (ModelState.IsValid)
             {

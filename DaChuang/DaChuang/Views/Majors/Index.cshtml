@@ -35,29 +35,35 @@
                 @Html.DisplayName("专业层次")
             </th>
             <th>
+                开设院校
+            </th>
+            <th>
                 详情
             </th>
         </tr>
 
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.MajorCode)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.MajorName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.MajorCategory.MajorCategoryName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.MajorLevel)
-                </td>
-                <td>
-                    @Html.ActionLink("详情", "Details", new { id = item.MajorCode })
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MajorCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MajorName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MajorCategory.MajorCategoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MajorLevel)
+            </td>
+            <td>
+                @Html.ActionLink("开设院校", "Index", "ColleageMajors", new { majorcode = item.MajorCode }, null)
+            </td>
+            <td>
+                @Html.ActionLink("详情", "Details", new { id = item.MajorCode })
+            </td>
+        </tr>
         }
     </table>
 </div>
