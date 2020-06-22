@@ -324,7 +324,6 @@ E:\DaChuang\digilentLZM\ToColleage\DaChuang\DaChuang\obj\Debug\DaChuang.csproj.C
 E:\DaChuang\digilentLZM\ToColleage\DaChuang\DaChuang\obj\Debug\DaChuang.csproj.CopyComplete
 E:\DaChuang\digilentLZM\ToColleage\DaChuang\DaChuang\obj\Debug\DaChuang.dll
 E:\DaChuang\digilentLZM\ToColleage\DaChuang\DaChuang\obj\Debug\DaChuang.pdb
-E:\DaChuang\digilentLZM\ToColleage\DaChuang\DaChuang\obj\Debug\DaChuang.csprojAssemblyReference.cache
 E:\DaChuang\digilentLZM\ToColleage\DaChuang\DaChuang\bin\System.Net.Http.Formatting.dll
 E:\DaChuang\digilentLZM\ToColleage\DaChuang\DaChuang\bin\System.Web.Http.dll
 E:\DaChuang\digilentLZM\ToColleage\DaChuang\DaChuang\bin\System.Web.Http.WebHost.dll

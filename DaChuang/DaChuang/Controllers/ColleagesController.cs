@@ -72,9 +72,7 @@ namespace DaChuang.Controllers
             int pageSize = 20; //定义每页显示的学校数量
             int pageNumber = (page ?? 1);//if page == null then page = 1 else page
             colleage = colleage.OrderBy(s => s.ColleageName);
-
-            IPagedList<ColleageShortInfo> colleages = colleage.ToPagedList(pageNumber, pageSize);
-            return View(colleages);
+            return View(colleage.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Colleages/Details/5

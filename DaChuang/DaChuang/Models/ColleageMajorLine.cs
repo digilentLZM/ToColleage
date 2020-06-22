@@ -8,7 +8,7 @@ namespace DaChuang.Models
 {
    
     [Table("ColleageMajorLine")]
-    public partial class ColleageMajorLine
+    public partial class ColleageScore
     {
         [Key]
         [Column(Order = 0)]
@@ -66,5 +66,10 @@ namespace DaChuang.Models
         public virtual StudentType StudentType { get; set; }
 
         public virtual Major Major { get; set; }
+
+        public static implicit operator ColleageScore(ColleageScoreLine v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

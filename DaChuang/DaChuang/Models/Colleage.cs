@@ -103,6 +103,6 @@ namespace DaChuang.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ColleageMajorLine> Score { get; set; }
+        public virtual ICollection<ColleageScore> Score { get; set; }
     }
 }

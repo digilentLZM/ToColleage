@@ -15,51 +15,7 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarColor01">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        @Html.ActionLink("首页", "Index", "Home", null, new { @class = "nav-link" })
-                    </li>
-                    <li class="nav-item">
-                        @Html.ActionLink("大学", "Index", "Colleages", null, new { @class = "nav-link" })
-                    </li>
-                    <li class="nav-item">
-                        @Html.ActionLink("专业", "Index", "Majors", null, new { @class = "nav-link" })
-                    </li>
-
-                    <li class="nav-item">
-                        @Html.ActionLink("院校分数线", "Index", "ColleageScoreLines", null, new { @class = "nav-link" })
-                    </li>
-
-                    <li class="nav-item">
-                        @Html.ActionLink("专业分数线", "Index", "ColleageMajorLines", null, new { @class = "nav-link" })
-                    </li>
-
-                    <li class="nav-item">
-                        @Html.ActionLink("各省分数线", "Index", "ProvinceScoreLines", null, new { @class = "nav-link" })
-                    </li>
-
-                    <li class="nav-item">
-                        @Html.ActionLink("一分一段", "Index", "ScoreSegments", null, new { @class = "nav-link" })
-                    </li>
-
-                    <li class="nav-item">
-                        @Html.ActionLink("同位分选大学", "Index", "SameScoreChoose", null, new { @class = "nav-link" })
-                    </li>
-
-                    <li class="nav-item">
-                        @Html.ActionLink("About", "About", "Home", null, new { @class = "nav-link" })
-                    </li>
-                    <li class="nav-item">
-                        @Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "nav-link" })
-                    </li>
-                </ul>
-                @Html.Partial("_LoginPartial")
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="text" placeholder="Search">
-                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-                </form>
-            </div>
+            @Html.Partial("_NavBar")
         </nav>
     </div>
     <div class="container body-content">

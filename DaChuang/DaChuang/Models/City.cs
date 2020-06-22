@@ -14,6 +14,7 @@ namespace DaChuang.Models
         public string CityId { get; set; }
 
         [Required]
+        [Display(Name = "所在城市")]
         public string CityName { get; set; }
 
         [Required]

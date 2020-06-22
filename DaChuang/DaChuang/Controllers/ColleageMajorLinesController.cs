@@ -94,7 +94,7 @@ namespace DaChuang.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ColleageMajorLine score = db.ColleageMajorLine.Find(id);
+            ColleageScore score = db.ColleageMajorLine.Find(id);
             if (score == null)
             {
                 return HttpNotFound();
@@ -118,7 +118,7 @@ namespace DaChuang.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ColleageCode,MajorCode,BatchId,ProvinceId,StudentTypeId,Year,Average" +
-            ",BatchScore,AverageRank,MinRank")] ColleageMajorLine score)
+            ",BatchScore,AverageRank,MinRank")] ColleageScore score)
         {
             if (ModelState.IsValid)
             {
@@ -141,7 +141,7 @@ namespace DaChuang.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ColleageMajorLine score = db.ColleageMajorLine.Find(id);
+            ColleageScore score = db.ColleageMajorLine.Find(id);
             if (score == null)
             {
                 return HttpNotFound();
@@ -158,7 +158,7 @@ namespace DaChuang.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ColleageCode,MajorCode,BatchId,ProvinceId,StudentTypeId,Year,Average,BatchScore,AverageRank,MinRank")] ColleageMajorLine score)
+        public ActionResult Edit([Bind(Include = "ColleageCode,MajorCode,BatchId,ProvinceId,StudentTypeId,Year,Average,BatchScore,AverageRank,MinRank")] ColleageScore score)
         {
             if (ModelState.IsValid)
             {
@@ -180,7 +180,7 @@ namespace DaChuang.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ColleageMajorLine score = db.ColleageMajorLine.Find(id);
+            ColleageScore score = db.ColleageMajorLine.Find(id);
             if (score == null)
             {
                 return HttpNotFound();
@@ -193,7 +193,7 @@ namespace DaChuang.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            ColleageMajorLine score = db.ColleageMajorLine.Find(id);
+            ColleageScore score = db.ColleageMajorLine.Find(id);
             db.ColleageMajorLine.Remove(score);
             db.SaveChanges();
             return RedirectToAction("Index");

@@ -13,6 +13,7 @@ namespace DaChuang.Models
         [Key]
         [Column(Order = 0)]
         [StringLength(10)]
+        [Display(Name = "院校代码")]
         public string ColleageCode { get; set; }
 
         [Key]
@@ -28,6 +29,7 @@ namespace DaChuang.Models
         [Key]
         [Column(Order = 3)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Display(Name = "年份")]
         public int Year { get; set; }
 
         [Key]
@@ -35,11 +37,15 @@ namespace DaChuang.Models
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int BatchId { get; set; }
 
+        [Display(Name = "最高分")]
         public double? MaxScore { get; set; }
         //public double? MinScore { get; set; }
 
+        [Display(Name = "平均分")]
         public decimal? Average { get; set; }
 
+
+        [Display(Name = "批次线")]
         public double? BatchScore { get; set; }
         public virtual Colleage Colleage { get; set; }
 

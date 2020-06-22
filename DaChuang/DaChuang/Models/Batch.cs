@@ -14,11 +14,12 @@ namespace DaChuang.Models
 
         [Required]
         [StringLength(20)]
+        [Display(Name = "Â¼È¡Åú´Î")]
         public string BatchName { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ColleageMajorLine> Score { get; set; }
+        public virtual ICollection<ColleageScore> Score { get; set; }
     }
 }

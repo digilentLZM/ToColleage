@@ -15,13 +15,14 @@ namespace DaChuang.Models
 
         [Required]
         [StringLength(30)]
+        [Display(Name = "Ê¡·Ý")]
         public string ProvinceName { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<City> City { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ColleageMajorLine> ColleageMajorLine { get; set; }
+        public virtual ICollection<ColleageScore> ColleageMajorLine { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ScoreSegment> ScoreSegment { get; set; }

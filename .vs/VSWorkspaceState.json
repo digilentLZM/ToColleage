@@ -1,6 +1,12 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\DaChuang",
+    "\\DaChuang\\DaChuang",
+    "\\DaChuang\\DaChuang\\DAL",
+    "\\DaChuang\\DaChuang\\Properties",
+    "\\DaChuang\\DaChuang\\Views"
   ],
+  "SelectedNode": "\\DaChuang\\DaChuang\\DAL\\DaChuangContext.cs",
   "PreviewInSolutionExplorer": false
 }
